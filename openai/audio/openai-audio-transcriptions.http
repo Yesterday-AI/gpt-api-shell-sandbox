@@ -1,0 +1,25 @@
+# Usage: Install VS Code extension 'REST Client' to use requests defined here.
+@API_URL = https://api.openai.com/v1/audio/transcriptions
+@OPENAI_API_KEY = {{$dotenv %OPENAI_API_KEY}}
+
+
+
+### Transcribe audio file
+@TEST_FILE = test-speech.mp3
+@MODEL = gpt-4o-transcribe
+POST {{API_URL}}
+Authorization: Bearer {{OPENAI_API_KEY}}
+Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
+
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="model"
+
+{{MODEL}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW
+Content-Disposition: form-data; name="file"; filename="{{TEST_FILE}}"
+Content-Type: audio/mp3
+
+< ../../assets/audio/{{TEST_FILE}}
+------WebKitFormBoundary7MA4YWxkTrZu0gW--
+
+{}
