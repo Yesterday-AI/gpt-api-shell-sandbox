@@ -1,0 +1,24 @@
+# Usage: Install VS Code extension 'REST Client' to use requests defined here.
+@API_URL_DEV = https://leadme.0fo.de
+@API_URL_TEST = https://leadme-test.yesterday-ai.de
+@API_URL_PROD = https://leadme.yesterday-ai.de
+@API_URL = {{API_URL_DEV}}
+@LEADME_AGENT_API_KEY = {{$dotenv %LEADME_AGENT_API_KEY}}
+
+
+# ! TODO: WIP!
+### POST Agent chat completion
+@AGENT_ID = agent-0
+@USER_ID = user-0
+POST {{API_URL}}/chat
+Content-Type: application/json
+Authorization: Bearer {{LEADME_AGENT_API_KEY}}
+
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Hello, how are you?"
+    }
+  ]
+}
